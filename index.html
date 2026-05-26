@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratibha Tiwari & Co — Chartered Accountants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════════ */
+:root {
+  /* Navy theme (default) */
+  --bg:          #145886;
+  --bg-2:        #0f4570;
+  --bg-3:        #0d3a5e;
+  --bg-4:        #0a2f4d;
+  --surface:     rgba(255,255,255,0.06);
+  --border:      rgba(255,255,255,0.12);
+  --border-2:    rgba(255,255,255,0.20);
+
+  --gold:        #C9A84C;
+  --gold-light:  #E2C06A;
+  --gold-dim:    rgba(201,168,76,0.22);
+  --gold-line:   rgba(201,168,76,0.5);
+
+  --text:        #FFFFFF;
+  --text-60:     rgba(255,255,255,0.70);
+  --text-35:     rgba(255,255,255,0.45);
+  --text-15:     rgba(255,255,255,0.12);
+
+  --blue-accent: #C9A84C;
+  --blue-soft:   rgba(201,168,76,0.10);
+
+  /* Type scale — intentionally restrained */
+  --size-xs:     11px;
+  --size-sm:     13px;
+  --size-base:   15px;
+  --size-md:     18px;
+  --size-lg:     24px;
+  --size-xl:     32px;
+  --size-2xl:    44px;
+  --size-3xl:    58px;
+  --size-hero:   clamp(40px, 5.5vw, 72px);
+
+  --serif:  'Playfair Display', Georgia, serif;
+  --sans:   'DM Sans', sans-serif;
+  --mono:   'DM Mono', monospace;
+
+  --radius: 2px;
+  --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  --fast:   0.18s;
+  --mid:    0.38s;
+  --slow:   0.65s;
+}
+
+/* ════════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 72px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+  transition: background var(--mid) var(--ease), color var(--mid) var(--ease);
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font-family: var(--sans); cursor: pointer; }
+
+/* theme switcher hidden */
+
+
+
+
+
+
+
+
+/* ════════════════════════════════════════════
+   NAV TOGGLE
+════════════════════════════════════════════ */
+
+
+
+/* ════════════════════════════════════════════
+   NAV — OPTION A (links visible)
+════════════════════════════════════════════ */
+#sitenav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 68px;
+  background: #145886;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  transition: background 0.3s;
+}
+#sitenav.scrolled {
+  background: #0e3d65;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+@media (max-width: 900px) {
+  #sitenav { padding: 0 24px; }
+}
+
+/* ══════════════════════════════════════════
+   SINGLE NAVBAR — built from scratch
+══════════════════════════════════════════ */
+
+/* Logo */
+.nav-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-emblem {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(201,168,76,0.6);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; flex-shrink: 0;
+}
+
+.logo-emblem span {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--gold); letter-spacing: 0.05em; position: relative; z-index: 1;
+}
+.logo-wordmark { display: flex; flex-direction: column; gap: 1px; }
+.logo-wordmark .lw1 {
+  font-family: var(--serif); font-size: 14px; font-weight: 500;
+  color: #ffffff; letter-spacing: 0.02em; line-height: 1;
+}
+.logo-wordmark .lw2 {
+  font-family: var(--mono); font-size: 8px; color: var(--gold);
+  letter-spacing: 0.18em; text-transform: uppercase; line-height: 1;
+}
+
+/* Centre links */
+.nav-centre-links {
+  display: flex; align-items: center; gap: 4px; list-style: none;
+}
+.nav-centre-links li { position: relative; }
+.nav-centre-links li a {
+  display: flex; align-items: center; gap: 4px;
+  padding: 8px 14px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.70);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.nav-centre-links li a:hover { color: #ffffff; }
+.nav-centre-links li a .caret {
+  width: 8px; height: 8px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-1px,-1px);
+  display: inline-block; opacity: 0.5;
+  transition: transform 0.18s;
+}
+.nav-centre-links li:hover > a .caret { transform: rotate(225deg) translate(-1px,-1px); }
+
+/* Services dropdown */
+.nav-dropdown {
+  display: none;
+  position: absolute; top: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%);
+  background: #0b3558;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-top: 2px solid #C9A84C;
+  min-width: 220px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  z-index: 500;
+}
+.nav-centre-links li:hover .nav-dropdown { display: block; }
+.nav-dropdown a {
+  display: block; padding: 10px 18px;
+  font-size: 12px; color: rgba(255,255,255,0.65);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: color 0.18s, background 0.18s;
+  text-decoration: none; font-weight: 400;
+}
+.nav-dropdown a:last-child { border-bottom: none; }
+.nav-dropdown a:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
+
+/* Right side */
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-cta-btn {
+  padding: 8px 20px; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #0d3a5e; background: #C9A84C;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: background 0.18s, transform 0.18s; display: inline-block;
+}
+.nav-cta-btn:hover { background: #E2C06A; transform: translateY(-1px); }
+
+/* Hamburger — for fullscreen menu */
+.nav-ham {
+  background: none; border: none; cursor: pointer;
+  display: flex; flex-direction: column; gap: 5px; padding: 4px;
+}
+.nav-ham span {
+  display: block; width: 22px; height: 1.5px;
+  background: rgba(255,255,255,0.80);
+  transition: background 0.18s, transform 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.18s;
+}
+.nav-ham:hover span { background: #ffffff; }
+.nav-ham.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
+.nav-ham.open span:nth-child(2) { opacity: 0; }
+.nav-ham.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4.5px); }
+
+/* Fullscreen overlay */
+.nav-overlay {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(9,38,65,0.98);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 80px 60px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.38s cubic-bezier(0.22,1,0.36,1), visibility 0.38s;
+}
+.nav-overlay.open { opacity: 1; visibility: visible; }
+.nav-overlay nav { display: flex; flex-direction: column; gap: 4px; }
+.nav-overlay a {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 46px);
+  font-weight: 400; color: rgba(255,255,255,0.45);
+  letter-spacing: -0.01em; line-height: 1.3;
+  text-decoration: none;
+  transform: translateY(14px); opacity: 0;
+  transition: color 0.18s,
+              transform 0.65s cubic-bezier(0.22,1,0.36,1),
+              opacity 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.nav-overlay.open a { opacity: 1; transform: none; }
+.nav-overlay.open a:nth-child(1) { transition-delay: 0.04s; }
+.nav-overlay.open a:nth-child(2) { transition-delay: 0.08s; }
+.nav-overlay.open a:nth-child(3) { transition-delay: 0.12s; }
+.nav-overlay.open a:nth-child(4) { transition-delay: 0.16s; }
+.nav-overlay.open a:nth-child(5) { transition-delay: 0.20s; }
+.nav-overlay.open a:nth-child(6) { transition-delay: 0.24s; }
+.nav-overlay.open a:nth-child(7) { transition-delay: 0.28s; }
+.nav-overlay.open a:nth-child(8) { transition-delay: 0.32s; }
+.nav-overlay.open a:nth-child(9) { transition-delay: 0.36s; }
+.nav-overlay a:hover { color: var(--gold); }
+.nav-overlay-tag {
+  position: absolute; bottom: 40px; left: 60px;
+  font-family: var(--mono); font-size: 10px;
+  color: rgba(255,255,255,0.25); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.nav-overlay-mark {
+  position: absolute; right: 60px; bottom: 50px;
+  font-family: var(--serif); font-size: 110px; font-weight: 400;
+  color: rgba(201,168,76,0.06); line-height: 1;
+  user-select: none; pointer-events: none; letter-spacing: -0.03em;
+}
+
+/* Mobile: hide centre links, show ham */
+@media (max-width: 900px) {
+  .nav-centre-links { display: none !important; }
+  .nav-cta-btn { display: none !important; }
+}
+@media (min-width: 901px) {
+  /* ham always visible on desktop for fullscreen menu */
+}
+
+
+
+
+
+/* ════════════════════════════════════════════
+   SHARED SECTION LAYOUT
+════════════════════════════════════════════ */
+.section { padding: 108px 60px; }
+.section-sm { padding: 72px 60px; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--size-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: var(--size-3xl);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-body {
+  font-size: var(--size-base);
+  color: var(--text-60);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 520px;
+}
+
+/* Divider */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 88px 60px 60px;
+  position: relative; overflow: hidden;
+}
+
+/* Subtle radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,120,212,0.12) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -60%);
+  pointer-events: none;
+}
+/* Gold underline accent */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 1px; height: 80px;
+  background: linear-gradient(to bottom, var(--gold-line), transparent);
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: var(--size-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: riseIn 0.8s 0.1s var(--ease) forwards;
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: var(--size-hero);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: riseIn 0.9s 0.25s var(--ease) forwards;
+}
+.hero-headline em { font-style: italic; color: var(--gold); }
+.hero-clarity { font-family: Georgia, serif; font-style: italic; font-weight: 400; color: var(--gold); }
+
+.hero-sub {
+  font-size: var(--size-base);
+  color: var(--text-60);
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto 48px;
+  font-weight: 300;
+  opacity: 0;
+  animation: riseIn 0.9s 0.4s var(--ease) forwards;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: 14px;
+  justify-content: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: riseIn 0.9s 0.55s var(--ease) forwards;
+}
+
+.btn-primary {
+  padding: 12px 28px;
+  font-size: var(--size-xs);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0d3a5e;
+  background: #C9A84C;
+  border: none;
+  transition: background var(--fast), transform var(--fast), box-shadow var(--fast);
+  display: inline-block;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.30);
+}
+.btn-primary:hover {
+  background: #E2C06A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201,168,76,0.40);
+}
+
+.btn-outline {
+  padding: 12px 28px;
+  font-size: var(--size-xs);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-60);
+  background: transparent;
+  border: 1px solid var(--border-2);
+  transition: color var(--fast), border-color var(--fast), transform var(--fast);
+  display: inline-block;
+}
+.btn-outline:hover {
+  color: var(--text);
+  border-color: var(--text-60);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex; align-items: center; gap: 0;
+  margin-top: 64px;
+  border: 1px solid var(--border);
+  opacity: 0;
+  animation: riseIn 0.9s 0.7s var(--ease) forwards;
+}
+.hero-stat {
+  padding: 20px 40px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-n {
+  font-family: var(--serif);
+  font-size: var(--size-xl);
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-l {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-35);
+}
+
+@keyframes riseIn {
+  from { opacity:0; transform: translateY(18px); }
+  to   { opacity:1; transform: none; }
+}
+
+/* ════════════════════════════════════════════
+   TICKER
+════════════════════════════════════════════ */
+.ticker {
+  background: #0a2f4d;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 11px 0;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex; white-space: nowrap;
+  animation: tickMove 28s linear infinite;
+}
+.ticker-item {
+  display: inline-flex; align-items: center; flex-shrink: 0;
+  text-decoration: none; transition: opacity 0.18s;
+}
+.ticker-item:hover { opacity: 0.7; }
+.ticker-item span {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); padding: 0 24px;
+}
+.ticker-dot { color: rgba(255,255,255,0.35); padding: 0; font-size: 12px; }
+@keyframes tickMove { from {transform:translateX(0)} to {transform:translateX(-50%)} }
+
+/* ════════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════════ */
+.about-section { background: var(--bg-2); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-right { display: flex; flex-direction: column; gap: 0; }
+.about-pillar {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.about-pillar:first-child { border-top: 1px solid var(--border); }
+.about-pillar-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  min-width: 28px;
+  padding-top: 2px;
+}
+.about-pillar h4 {
+  font-size: var(--size-base);
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.about-pillar p {
+  font-size: var(--size-sm);
+  color: var(--text-60);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.about-stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  margin-top: 40px;
+}
+.about-stat-cell {
+  background: var(--bg-2);
+  padding: 32px 28px;
+  transition: background var(--fast);
+}
+.about-stat-cell:hover { background: var(--bg-3); }
+.about-stat-n {
+  font-family: var(--serif);
+  font-size: var(--size-2xl);
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.about-stat-l {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-35);
+}
+
+/* ════════════════════════════════════════════
+   SERVICES — horizontal scroll
+════════════════════════════════════════════ */
+.services-section {
+  background: var(--bg);
+  padding-left: 0; padding-right: 0;
+}
+.services-head { padding: 108px 60px 0; }
+.services-scroll-wrap {
+  position: relative;
+  margin-top: 48px;
+}
+.services-track {
+  display: flex; gap: 1px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 60px 40px;
+  cursor: grab;
+}
+.services-track:active { cursor: grabbing; }
+.services-track::-webkit-scrollbar { height: 2px; }
+.services-track::-webkit-scrollbar-track { background: var(--border); }
+.services-track::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+
+.svc-card {
+  flex: 0 0 300px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: 36px 28px;
+  scroll-snap-align: start;
+  cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: border-color var(--mid) var(--ease), transform var(--mid) var(--ease), background var(--mid);
+}
+.svc-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--mid) var(--ease);
+}
+.svc-card:hover {
+  border-color: var(--border-2);
+  background: var(--bg-3);
+  transform: translateY(-3px);
+}
+.svc-card:hover::before { transform: scaleX(1); }
+
+.svc-n {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-35);
+  margin-bottom: 28px;
+}
+.svc-icon { margin-bottom: 20px; }
+.svc-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.svc-t {
+  font-family: var(--serif);
+  font-size: var(--size-md);
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: var(--text);
+  line-height: 1.25;
+}
+.svc-d {
+  font-size: var(--size-sm);
+  color: var(--text-60);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+.svc-more {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 7px;
+}
+.svc-more svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform var(--fast); }
+.svc-card:hover .svc-more svg { transform: translateX(4px); }
+
+.svc-controls {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 60px; margin-top: 12px;
+}
+.svc-ctrl-btn {
+  width: 40px; height: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-60);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color var(--fast), color var(--fast), background var(--fast);
+}
+.svc-ctrl-btn:hover { border-color: var(--gold-line); color: var(--gold); background: var(--gold-dim); }
+.svc-ctrl-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+.svc-hint {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.12em;
+  color: var(--text-35);
+}
+
+/* ════════════════════════════════════════════
+   INDUSTRIES
+════════════════════════════════════════════ */
+.industries-section { background: var(--bg-2); }
+.ind-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 56px;
+}
+.ind-card {
+  background: var(--bg-2);
+  padding: 32px 28px;
+  transition: background var(--fast);
+}
+.ind-card:hover { background: var(--bg-3); }
+.ind-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.ind-title {
+  font-family: var(--serif);
+  font-size: var(--size-md);
+  font-weight: 400;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.ind-desc {
+  font-size: var(--size-sm);
+  color: var(--text-60);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ════════════════════════════════════════════
+   CTA BAND
+════════════════════════════════════════════ */
+.cta-band {
+  background: var(--bg-4);
+  padding: 96px 60px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,120,212,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-band-left h2 {
+  font-family: var(--serif);
+  font-size: var(--size-2xl);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.cta-band-left h2 em { font-style: italic; color: var(--gold); }
+.cta-band-left p {
+  font-size: var(--size-base);
+  color: var(--text-60);
+  font-weight: 300;
+}
+
+/* ════════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════════ */
+.contact-section { background: var(--bg); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px; align-items: start;
+}
+.contact-details { margin-top: 32px; display: flex; flex-direction: column; gap: 28px; }
+.c-item { display: flex; gap: 16px; }
+.c-icon {
+  width: 38px; height: 38px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: border-color var(--fast), background var(--fast);
+}
+.c-icon:hover { border-color: var(--gold-line); }
+.c-icon svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.c-label {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 4px;
+}
+.c-val { font-size: var(--size-sm); color: var(--text); line-height: 1.65; }
+.c-val a { color: var(--text); transition: color var(--fast); }
+.c-val a:hover { color: var(--gold); }
+
+/* Form */
+.contact-form-wrap { }
+.form-heading {
+  font-family: var(--serif);
+  font-size: var(--size-xl);
+  font-weight: 400;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.fg label {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--text-35);
+}
+.fg input, .fg textarea, .fg select {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--sans); font-size: var(--size-sm);
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color var(--fast), background var(--fast);
+  resize: vertical; appearance: none;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  border-color: var(--gold-line);
+  background: var(--bg-3);
+}
+.fg textarea { min-height: 110px; }
+.fg input::placeholder, .fg textarea::placeholder { color: var(--text-35); }
+.fg select option { background: var(--bg-2); }
+.form-ok {
+  display: none;
+  background: rgba(201,168,76,0.07);
+  border: 1px solid var(--gold-line);
+  padding: 13px 16px;
+  font-family: var(--mono);
+  font-size: var(--size-sm);
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+footer {
+  background: #0a2f4d;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 64px 60px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-size: var(--size-lg);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.footer-brand-name span { color: var(--gold); }
+.footer-brand-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.footer-about {
+  font-size: var(--size-sm);
+  color: var(--text-35);
+  line-height: 1.8;
+  font-weight: 300;
+}
+.footer-col h5 {
+  font-family: var(--mono);
+  font-size: 10px; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a {
+  font-size: var(--size-sm);
+  color: var(--text-35);
+  transition: color var(--fast);
+}
+.footer-col ul a:hover { color: var(--text); }
+.footer-col address {
+  font-style: normal;
+  font-size: var(--size-sm);
+  color: var(--text-35);
+  line-height: 1.8;
+}
+.footer-col address a { color: var(--text-35); transition: color var(--fast); }
+.footer-col address a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--text-35);
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom a { color: var(--text-35); transition: color var(--fast); }
+.footer-bottom a:hover { color: var(--gold); }
+
+/* ════════════════════════════════════════════
+   MODAL
+════════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(5,25,45,0.88);
+  align-items: center; justify-content: center; padding: 20px;
+  backdrop-filter: blur(8px);
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #0d3a5e;
+  border: 1px solid rgba(255,255,255,0.15);
+  max-width: 580px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  animation: modalIn 0.35s var(--ease) forwards;
+}
+@keyframes modalIn {
+  from { opacity:0; transform: translateY(20px) scale(0.98); }
+  to   { opacity:1; transform: none; }
+}
+.modal-hdr {
+  padding: 28px 32px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+  position: sticky; top: 0; background: #0d3a5e; z-index: 2;
+}
+.modal-hdr::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+}
+.modal-title {
+  font-family: var(--serif);
+  font-size: var(--size-xl);
+  font-weight: 400; color: var(--text); line-height: 1.2;
+}
+.modal-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-60);
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+  transition: border-color var(--fast), color var(--fast);
+}
+.modal-close:hover { border-color: var(--gold-line); color: var(--gold); }
+.modal-body { padding: 28px 32px; }
+.modal-body p {
+  font-size: var(--size-sm);
+  color: var(--text-60); line-height: 1.8; margin-bottom: 20px; font-weight: 300;
+}
+.modal-scope-label {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 12px;
+}
+.modal-items {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  list-style: none;
+}
+.modal-items li {
+  font-size: var(--size-sm); color: var(--text);
+  padding: 9px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold);
+  font-weight: 300;
+}
+
+/* ════════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .ind-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .section { padding: 72px 24px; }
+  .section-sm { padding: 48px 24px; }
+  .hero { padding: 110px 24px 80px; }
+  
+  
+  
+  .contact-grid { grid-template-columns: 1fr; }
+  .cta-band { padding: 64px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { flex-wrap: wrap; }
+  .hero-stat { flex: 1 0 calc(50% - 1px); }
+  .services-head { padding: 72px 24px 0; }
+  .services-track, .svc-controls { padding-left: 24px; padding-right: 24px; }
+  
+  
+  
+}
+@media (max-width: 640px) {
+  .ind-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .modal-items { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; }
+  .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .cta-band { flex-direction: column; }
+  
+}
+
+/* ════════════════════════════════════════════
+   ASSOCIATES SECTION
+════════════════════════════════════════════ */
+.associates-section { background: var(--bg); }
+.associates-section .section-title { margin-bottom: 12px; }
+.associates-intro {
+  font-size: 15px; color: var(--text-60);
+  line-height: 1.75; max-width: 560px;
+  margin-bottom: 56px; font-weight: 300;
+}
+.associates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border-2);
+  margin-bottom: 64px;
+}
+.assoc-card {
+  background: var(--bg);
+  padding: 36px 28px;
+  display: flex; flex-direction: column;
+  transition: background 0.2s;
+  position: relative;
+}
+.assoc-card:hover { background: var(--bg-2); }
+.assoc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.assoc-card:hover::before { transform: scaleX(1); }
+.assoc-initials {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 18px; font-style: italic;
+  color: var(--gold);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+.assoc-name {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 400;
+  color: var(--text); margin-bottom: 4px;
+  line-height: 1.2;
+}
+.assoc-designation {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold); opacity: 0.8;
+  margin-bottom: 14px;
+}
+.assoc-bio {
+  font-size: 13px; color: var(--text-60);
+  line-height: 1.75; font-weight: 300;
+  flex: 1;
+}
+
+/* Assistants sub-section */
+.assistants-label {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold); opacity: 0.7;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.assistants-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border-2); max-width: 100%;
+}
+.assistants-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border-2);
+}
+.asst-card {
+  background: var(--bg);
+  padding: 22px 18px;
+  transition: background 0.2s;
+}
+.asst-card:hover { background: var(--bg-2); }
+.asst-name {
+  font-family: var(--serif);
+  font-size: 14px; font-weight: 400;
+  color: var(--text); margin-bottom: 4px;
+  text-transform: capitalize;
+}
+.asst-role {
+  font-size: 11px; color: var(--text-35);
+  line-height: 1.5; font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .associates-grid { grid-template-columns: 1fr; }
+  .assistants-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .associates-grid { grid-template-columns: 1fr; }
+  .assistants-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+   SINGLE NAVBAR
+══════════════════════════════════════ -->
+<header id="sitenav">
+  <!-- Logo -->
+  <a href="#home" class="nav-logo-link">
+    <div class="logo-emblem"><span>PT</span></div>
+    <div class="logo-wordmark">
+      <span class="lw1">Pratibha Tiwari &amp; Co.</span>
+      <span class="lw2">Chartered Accountants</span>
+    </div>
+  </a>
+
+  <!-- Centre links (Nav A logic: scroll to sections) -->
+  <ul class="nav-centre-links">
+    <li><a href="#about">About</a></li>
+    <li>
+      <a href="#services">Services <span class="caret"></span></a>
+      <div class="nav-dropdown">
+        <a href="#services" onclick="this.closest('header').querySelector('.nav-ham').click();return false;">All Services</a>
+        <a href="service-audit.html">Audit &amp; Assurance</a>
+        <a href="service-tax.html">Tax Solutions</a>
+        <a href="service-compliance.html">Compliance</a>
+        <a href="service-bookkeeping.html">Book Keeping</a>
+        <a href="service-business.html">Business Set-Up</a>
+        <a href="service-legal.html">Legal Assistance</a>
+        <a href="service-staffing.html">Staffing Solutions</a>
+      </div>
+    </li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <!-- Right: CTA + hamburger -->
+  <div class="nav-right">
+    <a href="#contact" class="nav-cta-btn">Get in Touch</a>
+    <button class="nav-ham" id="siteHam" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Fullscreen overlay (Nav B logic: direct subpage links) -->
+<div class="nav-overlay" id="siteOverlay">
+  <nav>
+    <a href="#about"                  onclick="closeOverlay()">About</a>
+    <a href="service-audit.html">Audit &amp; Assurance</a>
+    <a href="service-tax.html">Tax Solutions</a>
+    <a href="service-compliance.html">Compliance</a>
+    <a href="service-bookkeeping.html">Book Keeping</a>
+    <a href="service-business.html">Business Set-Up</a>
+    <a href="service-legal.html">Legal Assistance</a>
+    <a href="service-staffing.html">Staffing Solutions</a>
+    <a href="#contact"                onclick="closeOverlay()">Contact</a>
+  </nav>
+  <div class="nav-overlay-tag">Pratibha Tiwari &amp; Co — Chartered Accountants</div>
+  <div class="nav-overlay-mark">PT&amp;Co</div>
+</div>
+
+<!-- ════ HERO ════ -->
+<main id="home">
+<section class="hero">
+  <div class="hero-eyebrow">Trusted Financial &amp; Legal Advisory — India</div>
+  <h1 class="hero-headline">
+    Trusted Counsel.<br>
+    <em>Lasting Growth.</em><br>
+    <span class="hero-clarity">Financial Clarity.</span>
+  </h1>
+  <p class="hero-sub">
+    Pratibha Tiwari &amp; Co. — 15+ years of expertise in taxation, audit, compliance, and legal advisory. Empowering businesses across India with confidence and clarity.
+  </p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">Our Services</a>
+    <a href="#contact"  class="btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-n">15+</div>
+      <div class="hero-stat-l">Years in Practice</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">7</div>
+      <div class="hero-stat-l">Core Services</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">10+</div>
+      <div class="hero-stat-l">Sectors Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT ════ -->
+<section id="about" class="section about-section">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About the Firm</div>
+      <h2 class="section-title">Founded on experience.<br>Built for <em>your growth.</em></h2>
+      <p class="section-body" style="margin-bottom:14px;">
+        CA Pratibha Tiwari established Pratibha Tiwari &amp; Co. in June 2025 following a distinguished professional journey in taxation, audit, compliance, legal practice, and business advisory. A graduate since 2009 and formerly a Partner at Jain Tripathi &amp; Co., she brings over 15 years of diversified expertise to every engagement.
+      </p>
+      <p class="section-body" style="margin-bottom:32px;">
+        The firm is dedicated to delivering reliable, ethical, and result-oriented solutions — empowering businesses with confidence, compliance, and financial clarity.
+      </p>
+      <a href="#contact" class="btn-primary">Work with Us</a>
+      <div class="about-stat-grid" style="margin-top:40px;">
+        <div class="about-stat-cell">
+          <div class="about-stat-n">15+</div>
+          <div class="about-stat-l">Years in Practice</div>
+        </div>
+        <div class="about-stat-cell">
+          <div class="about-stat-n">June</div>
+          <div class="about-stat-l">Est. 2025</div>
+        </div>
+        <div class="about-stat-cell">
+          <div class="about-stat-n">10+</div>
+          <div class="about-stat-l">Sectors Served</div>
+        </div>
+        <div class="about-stat-cell">
+          <div class="about-stat-n">100%</div>
+          <div class="about-stat-l">Compliance Record</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="about-pillar">
+        <div class="about-pillar-num">01</div>
+        <div>
+          <h4>Deep Industry Knowledge</h4>
+          <p>Spanning 10+ sectors — from finance and manufacturing to real estate and e-commerce.</p>
+        </div>
+      </div>
+      <div class="about-pillar">
+        <div class="about-pillar-num">02</div>
+        <div>
+          <h4>Meticulous & Reliable</h4>
+          <p>A consistent track record of accuracy, timeliness, and full regulatory compliance.</p>
+        </div>
+      </div>
+      <div class="about-pillar">
+        <div class="about-pillar-num">03</div>
+        <div>
+          <h4>Client-First Approach</h4>
+          <p>We take the time to understand your business before prescribing any solution.</p>
+        </div>
+      </div>
+      <div class="about-pillar">
+        <div class="about-pillar-num">04</div>
+        <div>
+          <h4>Proactive Advisory</h4>
+          <p>We don't just report — we anticipate, advise, and guide before issues arise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SERVICES ════ -->
+<section id="services" class="services-section">
+  <div class="services-head reveal">
+    <div class="eyebrow">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-body">Comprehensive financial and advisory services tailored to your business needs. Click any card to learn more.</p>
+  </div>
+
+  <div class="services-scroll-wrap">
+    <div class="services-track" id="svcTrack">
+
+      <div class="svc-card" onclick="window.location='service-audit.html'">
+        <div class="svc-n">01 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div>
+        <div class="svc-t">Audit & Assurance</div>
+        <div class="svc-d">Statutory, internal, and concurrent audits that ensure transparency and build stakeholder confidence.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="svc-card" onclick="window.location='service-tax.html'">
+        <div class="svc-n">02 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="svc-t">Tax Solutions</div>
+        <div class="svc-d">GST, income tax, and TDS compliance — tailored strategies to maximise profitability.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="svc-card" onclick="window.location='service-compliance.html'">
+        <div class="svc-n">03 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="svc-t">Compliance Assistance</div>
+        <div class="svc-d">Stay ahead of SEBI, RBI, and MCA regulations — avoiding penalties with proactive advisory.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="svc-card" onclick="window.location='service-bookkeeping.html'">
+        <div class="svc-n">04 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <div class="svc-t">Book Keeping</div>
+        <div class="svc-d">Accurate, timely financial records and MIS reporting that give you a clear view of your business health.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="svc-card" onclick="window.location='service-business.html'">
+        <div class="svc-n">05 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="svc-t">Business Set-Up</div>
+        <div class="svc-d">Incorporation, registrations, and business structuring with expert guidance from day one.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="svc-card" onclick="window.location='service-legal.html'">
+        <div class="svc-n">06 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12L3 7l9-5 9 5-9 5z"/><path d="M6 9.5v5l6 3 6-3v-5"/></svg></div>
+        <div class="svc-t">Legal Assistance</div>
+        <div class="svc-d">Seasoned corporate legal advisory on contracts, disputes, and regulatory matters.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="svc-card" onclick="window.location='service-staffing.html'">
+        <div class="svc-n">07 / 07</div>
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="svc-t">Staffing Solutions</div>
+        <div class="svc-d">Talent acquisition and HR advisory to find the right finance and compliance professionals.</div>
+        <div class="svc-more">View scope <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="svc-controls">
+    <button class="svc-ctrl-btn" id="svcPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="svc-ctrl-btn" id="svcNext" aria-label="Next">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <span class="svc-hint">Drag to explore all services</span>
+  </div>
+</section>
+
+<!-- ════ INDUSTRIES ════ -->
+<section id="industries" class="section industries-section">
+  <div class="reveal">
+    <div class="eyebrow">Who We Serve</div>
+    <h2 class="section-title">Industries & Expertise</h2>
+    <p class="section-body">Deep domain knowledge across regulated, capital-intensive, and emerging sectors.</p>
+  </div>
+  <div class="ind-grid reveal reveal-delay-1">
+    <div class="ind-card">
+      <div class="ind-tag">Finance</div>
+      <div class="ind-title">Stock Brokers & DPs</div>
+      <div class="ind-desc">Depository Participants, PMS, NBFC, and Housing Finance Companies.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-tag">Manufacturing</div>
+      <div class="ind-title">Manufacturing & Textile</div>
+      <div class="ind-desc">End-to-end audit, tax, and compliance for production-heavy businesses.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-tag">Real Assets</div>
+      <div class="ind-title">Real Estate</div>
+      <div class="ind-desc">Statutory audit, tax consultancy, and transaction advisory for developers.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-tag">Healthcare</div>
+      <div class="ind-title">Pharmaceutical</div>
+      <div class="ind-desc">Regulatory compliance and financial oversight for pharma companies.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-tag">Digital</div>
+      <div class="ind-title">e-Commerce & ISPs</div>
+      <div class="ind-desc">GST, tax, and compliance for digital-first and internet businesses.</div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-tag">Luxury</div>
+      <div class="ind-title">Gems & Jewelry</div>
+      <div class="ind-desc">Specialised audit and compliance for the gems and jewelry trade.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA BAND ════ -->
+<div class="cta-band reveal">
+  <div class="cta-band-left">
+    <h2>Your financial compass.<br><em>Let's work together.</em></h2>
+    <p>Audit, taxation, compliance — handled with precision.</p>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1;">
+    <a href="#contact" class="btn-primary">Start a Conversation</a>
+    <a href="#services" class="btn-outline">View Services</a>
+  </div>
+</div>
+
+<!-- ════ CONTACT ════ -->
+
+<!-- ════ ASSOCIATES ════ -->
+<section id="associates" class="section associates-section">
+  <div class="reveal">
+    <div class="eyebrow">Our People</div>
+    <h2 class="section-title">The team behind<br><em>every result.</em></h2>
+    <p class="associates-intro">Pratibha Tiwari &amp; Co. is backed by a team of experienced associates and dedicated assistants — each bringing specialist expertise to every client engagement.</p>
+  </div>
+
+  <!-- Associates -->
+  <div class="associates-grid">
+
+    <div class="assoc-card reveal">
+      <div class="assoc-initials">PT</div>
+      <div class="assoc-name">CA Pratibha Tiwari</div>
+      <div class="assoc-designation">Founder &amp; Principal</div>
+      <p class="assoc-bio">Over 15 years of diversified expertise spanning taxation, audit, compliance, legal practice, and business advisory. Formerly a Partner at Jain Tripathi &amp; Co., CA Pratibha Tiwari founded this firm in June 2025 with a commitment to delivering reliable, ethical, and result-oriented solutions.</p>
+    </div>
+
+    <div class="assoc-card reveal reveal-delay-1">
+      <div class="assoc-initials">SR</div>
+      <div class="assoc-name">CA Sunita Rajguru</div>
+      <div class="assoc-designation">Associate — M&amp;F</div>
+      <p class="assoc-bio">Specialist in Mergers &amp; Finance with extensive experience advising businesses on financial structuring, valuations, and merger transactions. Brings a sharp analytical approach to complex financial matters.</p>
+    </div>
+
+    <div class="assoc-card reveal reveal-delay-2">
+      <div class="assoc-initials">MJ</div>
+      <div class="assoc-name">CA Manish Jangid</div>
+      <div class="assoc-designation">Associate — DT, GST &amp; International Tax</div>
+      <p class="assoc-bio">Deep expertise in Direct Taxation, GST, and International Taxation. Advises clients on cross-border transactions, transfer pricing, and complex GST structuring with a focus on compliance and tax efficiency.</p>
+    </div>
+
+    <div class="assoc-card reveal">
+      <div class="assoc-initials">LR</div>
+      <div class="assoc-name">Adv. Lalita Rajguru</div>
+      <div class="assoc-designation">Associate — Legal Counsel</div>
+      <p class="assoc-bio">Founder of Rajguru &amp; Associates, a full-service law firm. An expert SRA Counsel and Advocate with extensive experience in legal consultancy and advisory services — handling cases independently with a result-oriented, professional, and ethical approach.</p>
+    </div>
+
+  </div>
+
+  <!-- Assistants -->
+  <div class="reveal">
+    <div class="assistants-label">Support Team</div>
+    <div class="assistants-grid">
+
+      <div class="asst-card">
+        <div class="asst-name">Shital Ojha</div>
+        <div class="asst-role">CA Finalist</div>
+      </div>
+
+      <div class="asst-card">
+        <div class="asst-name">Sadhana Mishra</div>
+        <div class="asst-role">CA Finalist</div>
+      </div>
+
+      <div class="asst-card">
+        <div class="asst-name">Vikash Yadav</div>
+        <div class="asst-role">LLB Aspirant &amp; CA IPCC Cleared</div>
+      </div>
+
+      <div class="asst-card">
+        <div class="asst-name">Neeta Kushwaha</div>
+        <div class="asst-role">Master of Commerce</div>
+      </div>
+
+      <div class="asst-card">
+        <div class="asst-name">Ekta Tiwari</div>
+        <div class="asst-role">MBA Finance</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section contact-section">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Get in Touch</div>
+      <h2 class="section-title">Let's start<br>a <em>conversation.</em></h2>
+      <div class="contact-details">
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="c-label">Office Address</div>
+            <div class="c-val">Office No. 13, 1st Floor, A-Wing, Ekta SRA CHL,<br> Rani Sati Marg, Opp. Balaji Hospital,<br>Malad East, Mumbai – 400097.</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a2 2 0 011.18-2.27l3-.45a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 14.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 21v-4.08z"/></svg></div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-val"><a href="tel:+910000000000">+91 9833992331 / 9999006631 </a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-val"><a href="mailto:info@ptco.in">info@ptac.in</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div>
+            <div class="c-label">Office Hours</div>
+            <div class="c-val">Mon – Sat: 10:00 am – 6:30 pm<br>Sunday: Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap reveal reveal-delay-1">
+      <div class="form-heading">Send a Message</div>
+      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="fg"><label>First Name</label><input type="text" name="fname" placeholder="Priya" required></div>
+          <div class="fg"><label>Last Name</label><input type="text" name="lname" placeholder="Sharma" required></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="priya@company.com" required></div>
+        <div class="fg"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98000 00000" required></div>
+        <div class="fg">
+          <label>Service of Interest</label>
+          <select name="service">
+            <option value="">Select a service…</option>
+            <option>Audit & Assurance</option>
+            <option>Tax Solutions</option>
+            <option>Compliance Assistance</option>
+            <option>Book Keeping / Accounting</option>
+            <option>Business Set-Up</option>
+            <option>Legal Assistance</option>
+            <option>Staffing Solutions</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us briefly about your requirements…" required></textarea></div>
+        <div class="form-ok" id="formOk">✓ Your message has been received. We'll be in touch within one business day.</div>
+        <div class="form-ok" id="formErr" style="background:rgba(180,40,40,0.08);border-color:rgba(180,40,40,0.3);color:rgba(255,255,255,0.8);">✕ Something went wrong. Please email us directly at info@ptco.in</div>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-family:var(--sans);">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Pratibha Tiwari <span>&</span> Co.</div>
+      <div class="footer-brand-tag">Chartered Accountants</div>
+      <p class="footer-about">Founded June 2025 by CA Pratibha Tiwari, with 15+ years of expertise in taxation, audit, compliance, legal practice, and business advisory. Integrity. Insight. Impact.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#associates">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="service-audit.html">Audit & Assurance</a></li>
+        <li><a href="service-tax.html">Tax Solutions</a></li>
+        <li><a href="service-compliance.html">Compliance</a></li>
+        <li><a href="service-bookkeeping.html">Book Keeping</a></li>
+        <li><a href="service-business.html">Business Set-Up</a></li>
+        <li><a href="service-legal.html">Legal Assistance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <address>
+        Your Office Address<br>
+        City, State — PIN<br><br>
+        <a href="tel:+910000000000">+91 00000 00000</a><br>
+        <a href="mailto:info@ptco.in">info@ptco.in</a>
+      </address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025–2026 Pratibha Tiwari &amp; Co. All rights reserved.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════ MODAL ════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalBg(event)">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div class="modal-title" id="modalTitle">Service</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ── SERVICES DATA ── */
+const SERVICES = {
+  audit: {
+    title: 'Audit & Assurance',
+    desc: 'Our audit and assurance services ensure transparency and accuracy in your financial records, building confidence with investors, regulators, and all stakeholders. We conduct thorough, objective reviews of financial statements and internal controls.',
+    items: ['Statutory Audit','Internal Audit','Concurrent Audit','Transaction Audit','System Audit','Tax Audit','Due Diligence Reviews','Management Audit']
+  },
+  tax: {
+    title: 'Tax Solutions',
+    desc: 'Comprehensive tax planning and compliance designed to maximise your profitability while keeping you fully compliant. Our experts stay current with all regulatory changes so you don\'t have to.',
+    items: ['GST Registration & Filing','Income Tax Planning & Filing','TDS Compliance','Tax Advisory','Transfer Pricing','International Taxation','Advance Tax Planning','Tax Assessments & Appeals']
+  },
+  compliance: {
+    title: 'Compliance Assistance',
+    desc: 'Navigating the regulatory landscape is complex. We help you stay ahead of SEBI, RBI, MCA, and other regulatory bodies — avoiding penalties and reputational risk through proactive compliance management.',
+    items: ['SEBI Compliance','RBI Compliance','MCA / ROC Filings','FEMA Compliance','Companies Act Compliance','Periodic Regulatory Reporting','Compliance Health Checks']
+  },
+  bookkeeping: {
+    title: 'Book Keeping',
+    desc: 'Accurate financial records are the foundation of every sound business decision. We provide timely, meticulous bookkeeping and accounting with real-time visibility into your financial position.',
+    items: ['Day-to-Day Bookkeeping','Bank Reconciliation','Accounts Payable & Receivable','Payroll Processing','MIS Reporting','Financial Statement Preparation','Budgeting & Forecasting']
+  },
+  business: {
+    title: 'Business Set-Up',
+    desc: 'Starting a new venture? We guide you through every step — from choosing the right business structure to obtaining all registrations and setting up compliant processes from day one.',
+    items: ['Company / LLP Incorporation','GST & PAN Registration','MSME Registration','Import Export Code (IEC)','Shop & Establishment Act','Business Structure Advisory','Startup India Recognition']
+  },
+  legal: {
+    title: 'Legal Assistance',
+    desc: 'Our legal advisory team provides seasoned guidance on corporate legal complexities — from contract drafting to dispute resolution — so you can act with confidence.',
+    items: ['Contract Drafting & Review','Corporate Legal Advisory','Labour Law Compliance','Litigation Support','M&A Advisory Support','Legal Due Diligence']
+  },
+  staffing: {
+    title: 'Staffing Solutions',
+    desc: 'Finding the right talent is critical to success. We help organisations identify, attract, and onboard professionals across finance, accounting, and compliance functions.',
+    items: ['Finance & Accounting Recruitment','Compliance Officer Placement','Temporary & Contract Staffing','Executive Search','Background Verification','HR Policy Consulting']
+  }
+};
+
+function openModal(key) {
+  const s = SERVICES[key];
+  if (!s) return false;
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalBody').innerHTML =
+    `<p>${s.desc}</p>
+     <div class="modal-scope-label">Scope of Service</div>
+     <ul class="modal-items">${s.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  return false;
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalBg(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+/* ── SCROLL — sticky nav ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('sitenav').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ── HAMBURGER — fullscreen overlay ── */
+const siteHam     = document.getElementById('siteHam');
+const siteOverlay = document.getElementById('siteOverlay');
+function closeOverlay() {
+  siteOverlay.classList.remove('open');
+  siteHam.classList.remove('open');
+  document.body.style.overflow = '';
+}
+siteHam.addEventListener('click', () => {
+  const isOpen = siteOverlay.classList.toggle('open');
+  siteHam.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+/* ── SERVICES SCROLL ── */
+const track = document.getElementById('svcTrack');
+document.getElementById('svcNext').addEventListener('click', () => track.scrollBy({ left: 302, behavior: 'smooth' }));
+document.getElementById('svcPrev').addEventListener('click', () => track.scrollBy({ left: -302, behavior: 'smooth' }));
+let drag = false, startX, startScroll;
+track.addEventListener('mousedown', e => { drag=true; startX=e.pageX-track.offsetLeft; startScroll=track.scrollLeft; });
+document.addEventListener('mouseup', () => { drag=false; });
+track.addEventListener('mousemove', e => {
+  if (!drag) return;
+  e.preventDefault();
+  track.scrollLeft = startScroll - (e.pageX - track.offsetLeft - startX);
+});
+
+/* ── SCROLL REVEAL ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ── FORM ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn  = e.target.querySelector('button[type="submit"]');
+  const ok   = document.getElementById('formOk');
+  const err  = document.getElementById('formErr');
+  ok.style.display  = 'none';
+  err.style.display = 'none';
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+
+  /* ════════════════════════════════════════════════════════════
+     FORMSPREE SETUP — 3 steps:
+     1. Go to https://formspree.io and create a free account
+     2. Create a new form — enter YOUR email address
+     3. Copy the Form ID (looks like: xpzvwkqr)
+     4. Replace  YOUR_FORM_ID  below with that ID
+     ════════════════════════════════════════════════════════════ */
+  const FORMSPREE_ID = 'YOUR_FORM_ID'; // ← PASTE YOUR FORMSPREE ID HERE
+
+  fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+    method: 'POST',
+    body: new FormData(e.target),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if (res.ok) {
+      ok.style.display = 'block';
+      e.target.reset();
+    } else {
+      err.style.display = 'block';
+    }
+  })
+  .catch(() => { err.style.display = 'block'; })
+  .finally(() => {
+    btn.disabled    = false;
+    btn.textContent = 'Send Message';
+  });
+}
+</script>
+
+<!-- ════ TICKER fixed bottom ════ -->
+<div style="position:fixed;bottom:0;left:0;right:0;z-index:250;">
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <a class="ticker-item" href="service-audit.html"><span>Audit &amp; Assurance</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-tax.html"><span>Tax Solutions</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-compliance.html"><span>Compliance</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-bookkeeping.html"><span>Book Keeping</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-business.html"><span>Business Set-Up</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-legal.html"><span>Legal Assistance</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-staffing.html"><span>Staffing Solutions</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-audit.html"><span>Audit &amp; Assurance</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-tax.html"><span>Tax Solutions</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-compliance.html"><span>Compliance</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-bookkeeping.html"><span>Book Keeping</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-business.html"><span>Business Set-Up</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-legal.html"><span>Legal Assistance</span><span class="ticker-dot">✦</span></a>
+    <a class="ticker-item" href="service-staffing.html"><span>Staffing Solutions</span><span class="ticker-dot">✦</span></a>
+  </div>
+</div>
+</div><!-- /ticker fixed wrapper -->
+
+</body>
+</html>
